@@ -1,5 +1,4 @@
 PODS:
-  - ArcGIS-Runtime-SDK-iOS (100.2.1)
   - Firebase/Auth (4.10.1):
     - Firebase/Core
     - FirebaseAuth (= 4.4.4)
@@ -45,14 +44,12 @@ PODS:
   - nanopb/encode (0.3.8)
 
 DEPENDENCIES:
-  - ArcGIS-Runtime-SDK-iOS
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - ArcGIS-Runtime-SDK-iOS
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -65,7 +62,6 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
-  ArcGIS-Runtime-SDK-iOS: 5259f90133e72ba6b06d5a7dc60cb75dda0e970a
   Firebase: 92c6ba593e32db0defde464a9adc981d5cb49f97
   FirebaseAnalytics: 3dfae28d4a5e06f86c4fae830efc2ad3fadb19bc
   FirebaseAuth: d040bb7a9db6dfc29d0e7ec82d48be51352b2581
@@ -77,6 +73,6 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
 
-PODFILE CHECKSUM: d6862a66f62921bc8da3b69b055c2ac098d0cea6
+PODFILE CHECKSUM: 21224ca45a0d75c707006af47635de01bdc4b22a
 
 COCOAPODS: 1.5.0

@@ -9,7 +9,6 @@ target 'PedalShare' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
-  pod 'ArcGIS-Runtime-SDK-iOS'
   
   target 'PedalShareTests' do
     inherit! :search_paths

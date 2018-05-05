@@ -6,7 +6,11 @@ target 'PedalShare' do
   use_frameworks!
 
   # Pods for PedalShare
-
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'ArcGIS-Runtime-SDK-iOS'
+  
   target 'PedalShareTests' do
     inherit! :search_paths
     # Pods for testing

@@ -7,29 +7,34 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileVC: UIViewController {
-
+    
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var emailLbl: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.emailLbl.text = Auth.auth().currentUser?.email
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func signOutBtnPressed(_ sender: Any) {
+        let logoutPopup = UIAlertController(title: "Sign Out?", message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
+        let logoutAction = UIAlertAction(title: "Signed out", style: .destructive) { (buttonTapped) in
+            do {
+                try Auth.auth().signOut()
+                let authVC = self.storyboard?.instantiateViewController(withIdentifier: "AuthVC") as? AuthVC
+                self.present(authVC!, animated: true, completion: nil)
+            } catch {
+                print(error)
+            }
+        }
+        logoutPopup.addAction(logoutAction)
+        present(logoutPopup, animated: true, completion: nil)
     }
-    */
-
+    
 }
