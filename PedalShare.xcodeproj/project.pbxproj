@@ -11,14 +11,16 @@
 		AB0F76623A88529FBC5E2731 /* Pods_PedalShareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1910C9BB7AADEFD4B1140FAB /* Pods_PedalShareTests.framework */; };
 		E702E2C05ACC41B672B3DBC1 /* Pods_PedalShareUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22418E7CDF14C490D5296A44 /* Pods_PedalShareUITests.framework */; };
 		F84AD720209DDF4D009C4ECA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD71F209DDF4D009C4ECA /* AppDelegate.swift */; };
-		F84AD722209DDF4D009C4ECA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD721209DDF4D009C4ECA /* FirstViewController.swift */; };
-		F84AD724209DDF4D009C4ECA /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD723209DDF4D009C4ECA /* SecondViewController.swift */; };
+		F84AD722209DDF4D009C4ECA /* RideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD721209DDF4D009C4ECA /* RideVC.swift */; };
+		F84AD724209DDF4D009C4ECA /* HistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD723209DDF4D009C4ECA /* HistoryVC.swift */; };
 		F84AD727209DDF4D009C4ECA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F84AD725209DDF4D009C4ECA /* Main.storyboard */; };
 		F84AD729209DDF51009C4ECA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F84AD728209DDF51009C4ECA /* Assets.xcassets */; };
 		F84AD72C209DDF51009C4ECA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F84AD72A209DDF51009C4ECA /* LaunchScreen.storyboard */; };
 		F84AD737209DDF52009C4ECA /* PedalShareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD736209DDF52009C4ECA /* PedalShareTests.swift */; };
 		F84AD742209DDF52009C4ECA /* PedalShareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD741209DDF52009C4ECA /* PedalShareUITests.swift */; };
-		F8F486A6209DE2BB00B69A27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8F486A5209DE2BB00B69A27 /* GoogleService-Info.plist */; };
+		F8D27403209E0CD500B823BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8D27402209E0CD500B823BB /* MapKit.framework */; };
+		F8D27405209E175E00B823BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8D27404209E175E00B823BB /* GoogleService-Info.plist */; };
+		F8D27407209E399500B823BB /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D27406209E399500B823BB /* ProfileVC.swift */; };
 		F8F486A8209DE3A100B69A27 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F486A7209DE3A100B69A27 /* DataService.swift */; };
 		F8F486AA209DE87A00B69A27 /* Exported Fonts in Resources */ = {isa = PBXBuildFile; fileRef = F8F486A9209DE87A00B69A27 /* Exported Fonts */; };
 		F8F486AC209DF85200B69A27 /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F486AB209DF85200B69A27 /* AuthVC.swift */; };
@@ -56,8 +58,8 @@
 		DCD2B4A8686A140AC2E5D24A /* Pods-PedalShareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PedalShareTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PedalShareTests/Pods-PedalShareTests.release.xcconfig"; sourceTree = "<group>"; };
 		F84AD71C209DDF4D009C4ECA /* PedalShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PedalShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F84AD71F209DDF4D009C4ECA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F84AD721209DDF4D009C4ECA /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		F84AD723209DDF4D009C4ECA /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		F84AD721209DDF4D009C4ECA /* RideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideVC.swift; sourceTree = "<group>"; };
+		F84AD723209DDF4D009C4ECA /* HistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryVC.swift; sourceTree = "<group>"; };
 		F84AD726209DDF4D009C4ECA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F84AD728209DDF51009C4ECA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F84AD72B209DDF51009C4ECA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -68,7 +70,9 @@
 		F84AD73D209DDF52009C4ECA /* PedalShareUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PedalShareUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F84AD741209DDF52009C4ECA /* PedalShareUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedalShareUITests.swift; sourceTree = "<group>"; };
 		F84AD743209DDF52009C4ECA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F8F486A5209DE2BB00B69A27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F8D27402209E0CD500B823BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		F8D27404209E175E00B823BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F8D27406209E399500B823BB /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		F8F486A7209DE3A100B69A27 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		F8F486A9209DE87A00B69A27 /* Exported Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Exported Fonts"; sourceTree = "<group>"; };
 		F8F486AB209DF85200B69A27 /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
@@ -82,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8D27403209E0CD500B823BB /* MapKit.framework in Frameworks */,
 				7E31F9D53FCCE6500072A3DA /* Pods_PedalShare.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +126,7 @@
 		F17364EE2D7B26F3804EA5F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F8D27402209E0CD500B823BB /* MapKit.framework */,
 				8C4263DFAA6EA576F666349A /* Pods_PedalShare.framework */,
 				1910C9BB7AADEFD4B1140FAB /* Pods_PedalShareTests.framework */,
 				22418E7CDF14C490D5296A44 /* Pods_PedalShareUITests.framework */,
@@ -163,7 +169,7 @@
 				F84AD728209DDF51009C4ECA /* Assets.xcassets */,
 				F84AD72A209DDF51009C4ECA /* LaunchScreen.storyboard */,
 				F84AD72D209DDF51009C4ECA /* Info.plist */,
-				F8F486A5209DE2BB00B69A27 /* GoogleService-Info.plist */,
+				F8D27404209E175E00B823BB /* GoogleService-Info.plist */,
 			);
 			path = PedalShare;
 			sourceTree = "<group>";
@@ -197,10 +203,11 @@
 		F8F486A1209DE24900B69A27 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				F84AD721209DDF4D009C4ECA /* FirstViewController.swift */,
-				F84AD723209DDF4D009C4ECA /* SecondViewController.swift */,
+				F84AD721209DDF4D009C4ECA /* RideVC.swift */,
+				F84AD723209DDF4D009C4ECA /* HistoryVC.swift */,
 				F8F486AB209DF85200B69A27 /* AuthVC.swift */,
 				F8F486AD209DF87400B69A27 /* LoginVC.swift */,
+				F8D27406209E399500B823BB /* ProfileVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -302,6 +309,11 @@
 				TargetAttributes = {
 					F84AD71B209DDF4D009C4ECA = {
 						CreatedOnToolsVersion = 9.4;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					F84AD731209DDF52009C4ECA = {
 						CreatedOnToolsVersion = 9.4;
@@ -339,8 +351,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F84AD72C209DDF51009C4ECA /* LaunchScreen.storyboard in Resources */,
-				F8F486A6209DE2BB00B69A27 /* GoogleService-Info.plist in Resources */,
 				F8F486AA209DE87A00B69A27 /* Exported Fonts in Resources */,
+				F8D27405209E175E00B823BB /* GoogleService-Info.plist in Resources */,
 				F84AD729209DDF51009C4ECA /* Assets.xcassets in Resources */,
 				F84AD727209DDF4D009C4ECA /* Main.storyboard in Resources */,
 			);
@@ -471,10 +483,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8F486AC209DF85200B69A27 /* AuthVC.swift in Sources */,
-				F84AD724209DDF4D009C4ECA /* SecondViewController.swift in Sources */,
+				F84AD724209DDF4D009C4ECA /* HistoryVC.swift in Sources */,
 				F8F486AE209DF87400B69A27 /* LoginVC.swift in Sources */,
+				F8D27407209E399500B823BB /* ProfileVC.swift in Sources */,
 				F84AD720209DDF4D009C4ECA /* AppDelegate.swift in Sources */,
-				F84AD722209DDF4D009C4ECA /* FirstViewController.swift in Sources */,
+				F84AD722209DDF4D009C4ECA /* RideVC.swift in Sources */,
 				F8F486A8209DE3A100B69A27 /* DataService.swift in Sources */,
 				F8F486B0209DF90600B69A27 /* ShadowView.swift in Sources */,
 				F8F486B2209DF9B900B69A27 /* AuthService.swift in Sources */,

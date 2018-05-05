@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>423334081373-vbjh2dbppmujaiccosomc8a5e932d9go.apps.googleusercontent.com</string>
+	<string>193452848103-2s5ef94ttpcvki1rvg3c84s1uk4gaqd5.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.423334081373-vbjh2dbppmujaiccosomc8a5e932d9go</string>
+	<string>com.googleusercontent.apps.193452848103-2s5ef94ttpcvki1rvg3c84s1uk4gaqd5</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDf1dCxbmSYPHBF_s4AR9mZ_ZPYqa3a9rQ</string>
+	<string>AIzaSyDPVVujxnNUE3DDqNJydKDsDMMB8HkjQ4o</string>
 	<key>GCM_SENDER_ID</key>
-	<string>423334081373</string>
+	<string>193452848103</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.andrewmiller167.PedalShare</string>
 	<key>PROJECT_ID</key>
-	<string>pedal-7ca4f</string>
+	<string>pedalshare</string>
 	<key>STORAGE_BUCKET</key>
-	<string>pedal-7ca4f.appspot.com</string>
+	<string>pedalshare.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:423334081373:ios:12e750c783e6e0a0</string>
+	<string>1:193452848103:ios:12e750c783e6e0a0</string>
 	<key>DATABASE_URL</key>
-	<string>https://pedal-7ca4f.firebaseio.com</string>
+	<string>https://pedalshare.firebaseio.com</string>
 </dict>
 </plist>
