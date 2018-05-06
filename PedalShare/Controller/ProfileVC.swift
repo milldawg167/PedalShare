@@ -9,11 +9,10 @@
 import UIKit
 import Firebase
 
-class ProfileVC: UIViewController {
+class ProfileVC: UIViewController, UIPopoverControllerDelegate {
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var emailLbl: UILabel!
-    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,5 +35,4 @@ class ProfileVC: UIViewController {
         logoutPopup.addAction(logoutAction)
         present(logoutPopup, animated: true, completion: nil)
     }
-    
 }

@@ -18,6 +18,7 @@
 		F84AD72C209DDF51009C4ECA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F84AD72A209DDF51009C4ECA /* LaunchScreen.storyboard */; };
 		F84AD737209DDF52009C4ECA /* PedalShareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD736209DDF52009C4ECA /* PedalShareTests.swift */; };
 		F84AD742209DDF52009C4ECA /* PedalShareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD741209DDF52009C4ECA /* PedalShareUITests.swift */; };
+		F8BEE851209F2C67001DAADC /* rick_grimes.gif in Resources */ = {isa = PBXBuildFile; fileRef = F8BEE850209F2C64001DAADC /* rick_grimes.gif */; };
 		F8D27405209E175E00B823BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8D27404209E175E00B823BB /* GoogleService-Info.plist */; };
 		F8D27407209E399500B823BB /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D27406209E399500B823BB /* ProfileVC.swift */; };
 		F8D2740B209E851100B823BB /* JourneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D2740A209E851100B823BB /* JourneyVC.swift */; };
@@ -75,6 +76,7 @@
 		F84AD73D209DDF52009C4ECA /* PedalShareUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PedalShareUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F84AD741209DDF52009C4ECA /* PedalShareUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedalShareUITests.swift; sourceTree = "<group>"; };
 		F84AD743209DDF52009C4ECA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8BEE850209F2C64001DAADC /* rick_grimes.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = rick_grimes.gif; sourceTree = "<group>"; };
 		F8D27404209E175E00B823BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F8D27406209E399500B823BB /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		F8D2740A209E851100B823BB /* JourneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyVC.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				F84AD72A209DDF51009C4ECA /* LaunchScreen.storyboard */,
 				F84AD72D209DDF51009C4ECA /* Info.plist */,
 				F8D27404209E175E00B823BB /* GoogleService-Info.plist */,
+				F8BEE850209F2C64001DAADC /* rick_grimes.gif */,
 			);
 			path = PedalShare;
 			sourceTree = "<group>";
@@ -332,6 +335,9 @@
 							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 					F84AD731209DDF52009C4ECA = {
@@ -373,6 +379,7 @@
 				F8F486AA209DE87A00B69A27 /* Exported Fonts in Resources */,
 				F8D27405209E175E00B823BB /* GoogleService-Info.plist in Resources */,
 				F84AD729209DDF51009C4ECA /* Assets.xcassets in Resources */,
+				F8BEE851209F2C67001DAADC /* rick_grimes.gif in Resources */,
 				F84AD727209DDF4D009C4ECA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
