@@ -16,25 +16,22 @@ class RideVC: UIViewController {
     @IBOutlet weak var fromField: UITextField!
     @IBOutlet weak var toField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var goBtn: UIButton!
     
     let locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()
     let regionRadius: Double = 1000
     
-    var locationTuples: [(textField: UITextField?, mapItem: MKMapItem?)]!
-    var locationsArray: [(textField: UITextField?, mapItem: MKMapItem?)] {
-        var filtered = locationTuples.filter({ $0.mapItem != nil })
-        filtered += [filtered.first!]
-        return filtered
-    }
+    var locationsArray: Array<CLLocationCoordinate2D>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
         locationManager.delegate = self
+        locationManager.startUpdatingLocation()
         configureLocationServices()
-        
-        locationTuples = [(fromField, nil), (toField, nil)]
+        locationsArray = []
     }
     
     @IBAction func centerMapBtnWasPressed(_ sender: Any) {
@@ -42,56 +39,97 @@ class RideVC: UIViewController {
             centerMapOnUserLocation()
         }
     }
-    
-    func formatAddressFromPlacemark(placemark: CLPlacemark) -> String {
-        return (placemark.postalCode!["FormattedAddressLines"] as! [String])
-    }
  
     @IBAction func goBtnPressed(_ sender: Any) {
-        if fromField.text != nil && toField.text != nil{
-            performSegue(withIdentifier: "big_map", sender: self)
+        if fromField.text == "Current Location" {
+            let coordinate = locationManager.location?.coordinate
+            let lat_start = coordinate?.latitude
+            let long_start = coordinate?.longitude
+            let pair = CLLocationCoordinate2D(latitude: lat_start!, longitude: long_start!)
+            locationsArray.append(pair)
+            let pair2 = CLLocationCoordinate2D(latitude:  51.238255, longitude:  -0.604732)
+            locationsArray.append(pair2)
         } else {
-            showAlert("Please enter a valid address")
+            let pair = CLLocationCoordinate2D(latitude: 51.24401, longitude: -0.58889)
+            locationsArray.append(pair)
+            geocode(textField: toField)
         }
+        performSegue(withIdentifier: "big_map", sender: self)
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if locationTuples[0].mapItem == nil || locationTuples[1].mapItem == nil {
+        if fromField.text != nil && toField.text != nil {
+            return true
+        } else {
             showAlert("Please enter a valid starting point and destination.")
             return false
-        } else {
-            return true
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let journeyVC = segue.destination as? JourneyVC {
+            journeyVC.locationArray = locationsArray
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let journeyVC = segue.destination as! JourneyVC
-        journeyVC.locationArray = locationsArray
-    }
-    
-    @IBAction func addressEntered(_ sender: UIButton) {
-        view.endEditing(true)
-        let currentTextField = locationTuples[sender.tag-1].textField
-        CLGeocoder().geocodeAddressString(currentTextField!.text!, completionHandler: {(placemarks, error) -> Void in
-            if let placemarks = placemarks {
-                var addresses = [String]()
-                for placemark in placemarks {
-                    addresses.append(self.formatAddressFromPlacemark(placemark: placemark))
-                }
-                self.showAddressTable(addresses, textField:currentTextField!, placemarks:placemarks, sender:sender)
-            } else {
-                self.showAlert("Address not found.")
-            }
-        } )
-    }
     
     func showAlert(_ alertString: String) {
         let alert = UIAlertController(title: nil, message: alertString, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK",
-                                     style: .cancel) { (alert) -> Void in
+        let okButton = UIAlertAction(title: "OK", style: .default) { (alert) -> Void in
         }
         alert.addAction(okButton)
         present(alert, animated: true, completion: nil)
+        print(alertString)
+    }
+    
+    func geocode(textField: UITextField) {
+        let geocoder = CLGeocoder()
+        guard let postcode = textField.text else { return }
+        // Create Address String
+//        let address = "\(postcode)"
+        let address = "8787 Snouffer School Rd, Montgomery Village, MD 20879"
+        // Geocode Address String
+//        geocoder.geocodeAddressString(address) { (placemarks, error) in
+//            // Process Response
+//            self.processResponse(withPlacemarks: placemarks, error: error)
+//        }
+        geocoder.geocodeAddressString(address, completionHandler: {(placemarks, error) -> Void in
+            if((error) != nil){
+                print("Error", error ?? "")
+            }
+            if let placemark = placemarks?.first {
+                let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
+                print("Lat: \(coordinates.latitude) -- Long: \(coordinates.longitude)")
+                self.locationsArray.append(coordinates)
+            }
+        })
+        goBtn.isHidden = true
+        activityIndicator.startAnimating()
+    }
+    
+    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
+        // Update View
+        goBtn.isHidden = false
+        activityIndicator.stopAnimating()
+        
+        if let error = error {
+            print("Unable to Forward Geocode Address (\(error))")
+        } else {
+            var location: CLLocation?
+            
+            if let placemarks = placemarks {
+                location = placemarks.first?.location
+                return
+            }
+            
+            if let location = location {
+                let coordinate = location.coordinate
+                print(coordinate)
+                locationsArray.append(coordinate)
+            } else {
+                print("Did not get coordinates")
+                return
+            }
+        }
     }
 }
 
@@ -110,13 +148,6 @@ extension RideVC: CLLocationManagerDelegate {
         } else {
             return
         }
-    }
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        CLGeocoder().reverseGeocodeLocation(locations.last!, completionHandler: {(placemark: [CLPlacemark]?, error: Error?) -> Void in
-            if let placemarks = placemarks {
-                let placemark = placemarks[0]
-            }
-        })
     }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         centerMapOnUserLocation()
