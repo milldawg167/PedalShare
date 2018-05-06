@@ -18,31 +18,80 @@ class RideVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager = CLLocationManager()
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        locationManager.delegate = self
-        configureLocationServices()
-    }
- 
-    @IBAction func goBtnPressed(_ sender: Any) {
-    }
-    
-    @IBAction func getDirections(sender: AnyObject) {
-        view.endEditing(true)
-        performSegue(withIdentifier: "show_directions", sender: self)
-    }
-    
     let authorizationStatus = CLLocationManager.authorizationStatus()
     let regionRadius: Double = 1000
     
+    var locationTuples: [(textField: UITextField?, mapItem: MKMapItem?)]!
+    var locationsArray: [(textField: UITextField?, mapItem: MKMapItem?)] {
+        var filtered = locationTuples.filter({ $0.mapItem != nil })
+        filtered += [filtered.first!]
+        return filtered
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        mapView.delegate = self
+        locationManager.delegate = self
+        configureLocationServices()
+        
+        locationTuples = [(fromField, nil), (toField, nil)]
+    }
     
     @IBAction func centerMapBtnWasPressed(_ sender: Any) {
         if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
             centerMapOnUserLocation()
         }
+    }
+    
+    func formatAddressFromPlacemark(placemark: CLPlacemark) -> String {
+        return (placemark.postalCode!["FormattedAddressLines"] as! [String])
+    }
+ 
+    @IBAction func goBtnPressed(_ sender: Any) {
+        if fromField.text != nil && toField.text != nil{
+            performSegue(withIdentifier: "big_map", sender: self)
+        } else {
+            showAlert("Please enter a valid address")
+        }
+    }
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if locationTuples[0].mapItem == nil || locationTuples[1].mapItem == nil {
+            showAlert("Please enter a valid starting point and destination.")
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let journeyVC = segue.destination as! JourneyVC
+        journeyVC.locationArray = locationsArray
+    }
+    
+    @IBAction func addressEntered(_ sender: UIButton) {
+        view.endEditing(true)
+        let currentTextField = locationTuples[sender.tag-1].textField
+        CLGeocoder().geocodeAddressString(currentTextField!.text!, completionHandler: {(placemarks, error) -> Void in
+            if let placemarks = placemarks {
+                var addresses = [String]()
+                for placemark in placemarks {
+                    addresses.append(self.formatAddressFromPlacemark(placemark: placemark))
+                }
+                self.showAddressTable(addresses, textField:currentTextField!, placemarks:placemarks, sender:sender)
+            } else {
+                self.showAlert("Address not found.")
+            }
+        } )
+    }
+    
+    func showAlert(_ alertString: String) {
+        let alert = UIAlertController(title: nil, message: alertString, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK",
+                                     style: .cancel) { (alert) -> Void in
+        }
+        alert.addAction(okButton)
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -61,6 +110,13 @@ extension RideVC: CLLocationManagerDelegate {
         } else {
             return
         }
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        CLGeocoder().reverseGeocodeLocation(locations.last!, completionHandler: {(placemark: [CLPlacemark]?, error: Error?) -> Void in
+            if let placemarks = placemarks {
+                let placemark = placemarks[0]
+            }
+        })
     }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         centerMapOnUserLocation()

@@ -18,10 +18,11 @@
 		F84AD72C209DDF51009C4ECA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F84AD72A209DDF51009C4ECA /* LaunchScreen.storyboard */; };
 		F84AD737209DDF52009C4ECA /* PedalShareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD736209DDF52009C4ECA /* PedalShareTests.swift */; };
 		F84AD742209DDF52009C4ECA /* PedalShareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD741209DDF52009C4ECA /* PedalShareUITests.swift */; };
-		F8D27403209E0CD500B823BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8D27402209E0CD500B823BB /* MapKit.framework */; };
 		F8D27405209E175E00B823BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8D27404209E175E00B823BB /* GoogleService-Info.plist */; };
 		F8D27407209E399500B823BB /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D27406209E399500B823BB /* ProfileVC.swift */; };
 		F8D27409209E473A00B823BB /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F8D27408209E473A00B823BB /* ArcGIS.bundle */; };
+		F8D2740B209E851100B823BB /* JourneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D2740A209E851100B823BB /* JourneyVC.swift */; };
+		F8D2740D209E8F4C00B823BB /* DirectionsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D2740C209E8F4C00B823BB /* DirectionsTableView.swift */; };
 		F8F486A8209DE3A100B69A27 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F486A7209DE3A100B69A27 /* DataService.swift */; };
 		F8F486AA209DE87A00B69A27 /* Exported Fonts in Resources */ = {isa = PBXBuildFile; fileRef = F8F486A9209DE87A00B69A27 /* Exported Fonts */; };
 		F8F486AC209DF85200B69A27 /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F486AB209DF85200B69A27 /* AuthVC.swift */; };
@@ -71,10 +72,11 @@
 		F84AD73D209DDF52009C4ECA /* PedalShareUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PedalShareUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F84AD741209DDF52009C4ECA /* PedalShareUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedalShareUITests.swift; sourceTree = "<group>"; };
 		F84AD743209DDF52009C4ECA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F8D27402209E0CD500B823BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F8D27404209E175E00B823BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F8D27406209E399500B823BB /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		F8D27408209E473A00B823BB /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = PedalShare/Resources/ArcGIS.bundle; sourceTree = SOURCE_ROOT; };
+		F8D2740A209E851100B823BB /* JourneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyVC.swift; sourceTree = "<group>"; };
+		F8D2740C209E8F4C00B823BB /* DirectionsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsTableView.swift; sourceTree = "<group>"; };
 		F8F486A7209DE3A100B69A27 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		F8F486A9209DE87A00B69A27 /* Exported Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Exported Fonts"; sourceTree = "<group>"; };
 		F8F486AB209DF85200B69A27 /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
@@ -88,7 +90,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8D27403209E0CD500B823BB /* MapKit.framework in Frameworks */,
 				7E31F9D53FCCE6500072A3DA /* Pods_PedalShare.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,7 +129,6 @@
 		F17364EE2D7B26F3804EA5F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F8D27402209E0CD500B823BB /* MapKit.framework */,
 				8C4263DFAA6EA576F666349A /* Pods_PedalShare.framework */,
 				1910C9BB7AADEFD4B1140FAB /* Pods_PedalShareTests.framework */,
 				22418E7CDF14C490D5296A44 /* Pods_PedalShareUITests.framework */,
@@ -197,6 +197,7 @@
 		F8F486A0209DE24500B69A27 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F8D2740C209E8F4C00B823BB /* DirectionsTableView.swift */,
 				F8F486AF209DF90600B69A27 /* ShadowView.swift */,
 			);
 			path = View;
@@ -206,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				F84AD721209DDF4D009C4ECA /* RideVC.swift */,
+				F8D2740A209E851100B823BB /* JourneyVC.swift */,
 				F84AD723209DDF4D009C4ECA /* HistoryVC.swift */,
 				F8F486AB209DF85200B69A27 /* AuthVC.swift */,
 				F8F486AD209DF87400B69A27 /* LoginVC.swift */,
@@ -313,7 +315,7 @@
 						CreatedOnToolsVersion = 9.4;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -463,11 +465,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8D2740D209E8F4C00B823BB /* DirectionsTableView.swift in Sources */,
 				F8F486AC209DF85200B69A27 /* AuthVC.swift in Sources */,
 				F84AD724209DDF4D009C4ECA /* HistoryVC.swift in Sources */,
 				F8F486AE209DF87400B69A27 /* LoginVC.swift in Sources */,
 				F8D27407209E399500B823BB /* ProfileVC.swift in Sources */,
 				F84AD720209DDF4D009C4ECA /* AppDelegate.swift in Sources */,
+				F8D2740B209E851100B823BB /* JourneyVC.swift in Sources */,
 				F84AD722209DDF4D009C4ECA /* RideVC.swift in Sources */,
 				F8F486A8209DE3A100B69A27 /* DataService.swift in Sources */,
 				F8F486B0209DF90600B69A27 /* ShadowView.swift in Sources */,
@@ -561,7 +565,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -622,7 +626,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -649,9 +653,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 67H43KT2PM;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = PedalShare/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewmiller167.PedalShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -666,9 +673,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 67H43KT2PM;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = PedalShare/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewmiller167.PedalShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -685,7 +695,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 67H43KT2PM;
 				INFOPLIST_FILE = PedalShareTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewmiller167.PedalShareTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -703,7 +717,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 67H43KT2PM;
 				INFOPLIST_FILE = PedalShareTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewmiller167.PedalShareTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -720,7 +738,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 67H43KT2PM;
 				INFOPLIST_FILE = PedalShareUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewmiller167.PedalShareUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -737,7 +759,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 67H43KT2PM;
 				INFOPLIST_FILE = PedalShareUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewmiller167.PedalShareUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
