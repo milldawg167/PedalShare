@@ -8,8 +8,12 @@
 
 import UIKit
 import UserNotifications
+import StoreKit
 
-class PayVC: UIViewController {
+class PayVC: UIViewController, SKProductsRequestDelegate {
+    
+    var productIDs: Array<String> = []
+    var productsArray: Array<SKProduct> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +25,11 @@ class PayVC: UIViewController {
                 print(error?.localizedDescription as Any)
             }
         })
+        
+        productIDs.append("tripPurchase_Pedal")
     }
     
-    @IBAction func notifyBtnPressed(_ sender: UIButton) {
+    @IBAction func payBtnPressed(_ sender: UIButton) {
         scheduleNotification(inSeconds: 5, completion: { success in
             if success {
                 print("Notification access granted")
@@ -63,6 +69,31 @@ class PayVC: UIViewController {
                 completion(true)
             }
         })
-        
+    }
+    
+    func requestProductInfo() {
+        if SKPaymentQueue.canMakePayments() {
+            let productIdentifiers = Set<String>(productIDs)
+            let productRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
+            productRequest.delegate = self
+            productRequest.start()
+        }
+        else {
+            print("Cannot perform In App Purchases.")
+        }
+    }
+    
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        if response.products.count != 0 {
+            for product in response.products {
+                productsArray.append(product)
+            }
+        }
+        else {
+            print("There are no products.")
+        }
+        if response.invalidProductIdentifiers.count != 0 {
+            print(response.invalidProductIdentifiers.description)
+        }
     }
 }
