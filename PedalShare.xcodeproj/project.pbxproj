@@ -687,7 +687,7 @@
 				DEVELOPMENT_TEAM = 67H43KT2PM;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = PedalShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -709,7 +709,7 @@
 				DEVELOPMENT_TEAM = 67H43KT2PM;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = PedalShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

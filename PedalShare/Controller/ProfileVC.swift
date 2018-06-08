@@ -23,7 +23,7 @@ class ProfileVC: UIViewController, UIPopoverControllerDelegate {
     
     @IBAction func signOutBtnPressed(_ sender: Any) {
         let logoutPopup = UIAlertController(title: "Sign Out?", message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
-        let logoutAction = UIAlertAction(title: "Signed out", style: .destructive) { (buttonTapped) in
+        let logoutAction = UIAlertAction(title: "Sign out", style: .destructive) { (buttonTapped) in
             do {
                 try Auth.auth().signOut()
                 let authVC = self.storyboard?.instantiateViewController(withIdentifier: "AuthVC") as? AuthVC

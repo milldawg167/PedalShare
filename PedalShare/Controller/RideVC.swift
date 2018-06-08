@@ -41,34 +41,29 @@ class RideVC: UIViewController {
     }
  
     @IBAction func goBtnPressed(_ sender: Any) {
-        if fromField.text == "Current Location" {
+        goBtn.isHidden = true
+        activityIndicator.startAnimating()
+        if fromField.text == "" {
             let coordinate = locationManager.location?.coordinate
             let lat_start = coordinate?.latitude
             let long_start = coordinate?.longitude
             let pair = CLLocationCoordinate2D(latitude: lat_start!, longitude: long_start!)
             locationsArray.append(pair)
-            let pair2 = CLLocationCoordinate2D(latitude:  51.238255, longitude:  -0.604732)
-            locationsArray.append(pair2)
+            geocode(textField: toField)
+            goBtn.isHidden = false
+            activityIndicator.stopAnimating()
+            if !goBtn.isHidden {
+                performSegue(withIdentifier: "big_map", sender: self)
+            } else {
+                print("error here!!!!")
+            }
         } else {
             let pair = CLLocationCoordinate2D(latitude: 51.24401, longitude: -0.58889)
             locationsArray.append(pair)
-            geocode(textField: toField)
+            // geocode(textField: toField)
         }
-        performSegue(withIdentifier: "big_map", sender: self)
-    }
-
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if fromField.text != nil && toField.text != nil {
-            return true
-        } else {
-            showAlert("Please enter a valid starting point and destination.")
-            return false
-        }
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let journeyVC = segue.destination as? JourneyVC {
-            journeyVC.locationArray = locationsArray
-        }
+        // let pair2 = CLLocationCoordinate2D(latitude:  51.238255, longitude:  -0.604732)
+        // locationsArray.append(pair2)
     }
     
     
@@ -83,52 +78,37 @@ class RideVC: UIViewController {
     
     func geocode(textField: UITextField) {
         let geocoder = CLGeocoder()
-        guard let postcode = textField.text else { return }
-        // Create Address String
-//        let address = "\(postcode)"
-        let address = "8787 Snouffer School Rd, Montgomery Village, MD 20879"
-        // Geocode Address String
-//        geocoder.geocodeAddressString(address) { (placemarks, error) in
-//            // Process Response
-//            self.processResponse(withPlacemarks: placemarks, error: error)
-//        }
-        geocoder.geocodeAddressString(address, completionHandler: {(placemarks, error) -> Void in
-            if((error) != nil){
-                print("Error", error ?? "")
+        let address = textField.text
+        geocoder.geocodeAddressString(address!, completionHandler: {(placemarks, error) -> Void in
+            if (error != nil) {
+                print("Error: \(String(describing: error))")
             }
+
             if let placemark = placemarks?.first {
-                let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
-                print("Lat: \(coordinates.latitude) -- Long: \(coordinates.longitude)")
-                self.locationsArray.append(coordinates)
+                let lat_end = placemark.location!.coordinate.latitude
+                let long_end = placemark.location!.coordinate.longitude
+                print("Lat: \(lat_end) -- Long: \(long_end)")
+                let pair2 = CLLocationCoordinate2D(latitude: lat_end, longitude: long_end)
+                self.locationsArray.append(pair2)
+                print("\(self.locationsArray)")
+                return
+            } else {
+                print("\(String(describing: error))")
             }
         })
-        goBtn.isHidden = true
-        activityIndicator.startAnimating()
     }
     
-    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
-        // Update View
-        goBtn.isHidden = false
-        activityIndicator.stopAnimating()
-        
-        if let error = error {
-            print("Unable to Forward Geocode Address (\(error))")
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if fromField.text != nil && toField.text != nil {
+            return true
         } else {
-            var location: CLLocation?
-            
-            if let placemarks = placemarks {
-                location = placemarks.first?.location
-                return
-            }
-            
-            if let location = location {
-                let coordinate = location.coordinate
-                print(coordinate)
-                locationsArray.append(coordinate)
-            } else {
-                print("Did not get coordinates")
-                return
-            }
+            showAlert("Please enter a valid starting point and destination.")
+            return false
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let journeyVC = segue.destination as? JourneyVC {
+            journeyVC.locationArray = locationsArray
         }
     }
 }
