@@ -10,19 +10,23 @@ class JourneyVC: UIViewController, MKMapViewDelegate {
     
     let locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()
-    let regionRadius: Double = 1000
+    let regionRadius: Double = 2000
     
     var activityIndicator: UIActivityIndicatorView?
-    var journey: Journey!
+    var passedJourney: Journey!
+    var thejourney: Journey!
     
+    func initData(forJourney journey: Journey) {
+        self.passedJourney = journey
+    }
     // MARK: - showRouteOnMap
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
         configureLocationServices()
-        print("\(journey.end_coords)")
-        showRouteOnMap(pickupCoordinate: journey.start_coords, destinationCoordinate: journey.end_coords)
+        thejourney = passedJourney
+        showRouteOnMap(pickupCoordinate: thejourney.start_coords!, destinationCoordinate: thejourney.end_coords!)
     }
     
     func showRouteOnMap(pickupCoordinate: CLLocationCoordinate2D, destinationCoordinate: CLLocationCoordinate2D) {
@@ -52,7 +56,6 @@ class JourneyVC: UIViewController, MKMapViewDelegate {
         directionRequest.destination = destinationMapItem
         directionRequest.transportType = .automobile
         
-        // Calculate the direction
         let directions = MKDirections(request: directionRequest)
         
         directions.calculate {
@@ -69,8 +72,10 @@ class JourneyVC: UIViewController, MKMapViewDelegate {
             
             self.mapView.add((route.polyline), level: MKOverlayLevel.aboveRoads)
             
-            let rect = route.polyline.boundingMapRect
-            self.mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+            var rect = MKCoordinateRegionForMapRect(route.polyline.boundingMapRect)
+            rect.span.latitudeDelta *= 1.5
+            rect.span.longitudeDelta *= 1.5
+            self.mapView.setRegion(rect, animated: true)
         }
     }
     

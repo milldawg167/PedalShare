@@ -10,6 +10,6 @@ import Foundation
 import CoreLocation
 
 struct Journey {
-    var start_coords: CLLocationCoordinate2D!
-    var end_coords: CLLocationCoordinate2D!
+    var start_coords: CLLocationCoordinate2D?
+    var end_coords: CLLocationCoordinate2D?
 }

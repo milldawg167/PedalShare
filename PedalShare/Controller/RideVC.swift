@@ -19,7 +19,11 @@ class RideVC: UIViewController{
     let authorizationStatus = CLLocationManager.authorizationStatus()
     let regionRadius: Double = 2000
     
-    var journey: Journey!
+    //var journey: Journey!
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +36,7 @@ class RideVC: UIViewController{
         locationManager.startUpdatingLocation()
         
         configureLocationServices()
-        
-        journey = Journey()
+        //addDoubleTap()
         
         let points = [CLLocationCoordinate2D(latitude: 51.2915, longitude: -0.4199),
                       CLLocationCoordinate2D(latitude: 51.281734, longitude: -0.407015),
@@ -59,12 +62,13 @@ class RideVC: UIViewController{
         }
     }
     
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let annoIdentifier = "Bike"
         var annotationView: MKAnnotationView?
         if annotation.isKind(of: MKUserLocation.self) {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "User")
-            annotationView?.image = UIImage(named: "directions_icon")
+//            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "User")
+//            annotationView?.image = UIImage(named: "directions_icon")
         } else if let deqAnno = mapView.dequeueReusableAnnotationView(withIdentifier: annoIdentifier) {
             annotationView = deqAnno
             annotationView?.annotation = annotation
@@ -90,15 +94,27 @@ class RideVC: UIViewController{
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+//        if let anno = view.annotation as? BikeAnnotation {
+//            let place = MKPlacemark(coordinate: anno.coordinate)
+//            let destination = MKMapItem(placemark: place)
+//            destination.name = "Bike Location"
+//            let regionDistance: CLLocationDistance = 1000
+//            let regionSpan = MKCoordinateRegionMakeWithDistance(anno.coordinate, regionDistance, regionDistance)
+//
+//            let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span), MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking] as [String : Any]
+//            MKMapItem.openMaps(with: [destination], launchOptions: options)
+//        }
         if let anno = view.annotation as? BikeAnnotation {
-            let place = MKPlacemark(coordinate: anno.coordinate)
-            let destination = MKMapItem(placemark: place)
-            destination.name = "Bike Location"
-            let regionDistance: CLLocationDistance = 1000
-            let regionSpan = MKCoordinateRegionMakeWithDistance(anno.coordinate, regionDistance, regionDistance)
-            
-            let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span), MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking] as [String : Any]
-            MKMapItem.openMaps(with: [destination], launchOptions: options)
+            var journey = Journey()
+            let start = locationManager.location?.coordinate
+            print(start)
+            journey.start_coords = start
+            let end = anno.coordinate
+            print(end)
+            journey.end_coords = end
+            guard let journeyVC = storyboard?.instantiateViewController(withIdentifier: "JourneyVC") as? JourneyVC else { return }
+            journeyVC.initData(forJourney: journey)
+            present(journeyVC, animated: true, completion: nil)
         }
     }
     
@@ -111,13 +127,13 @@ class RideVC: UIViewController{
         print(alertString)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "big_map" {
-            if let journeyVC = segue.destination as? JourneyVC {
-                journeyVC.journey = sender as? Journey
-            }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "big_map" {
+//            if let journeyVC = segue.destination as? JourneyVC {
+//                journeyVC.journey = sender as? Journey
+//            }
+//        }
+//    }
 }
 
 extension RideVC: MKMapViewDelegate {
@@ -126,18 +142,18 @@ extension RideVC: MKMapViewDelegate {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, regionRadius*2.0, regionRadius*2.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        
-        if overlay.isKind(of: MKPolygon.self) {
-            let renderer = MKPolygonRenderer(overlay: overlay)
-            
-            renderer.fillColor = UIColor.cyan.withAlphaComponent(0.2)
-            renderer.strokeColor = UIColor.blue.withAlphaComponent(0.7)
-            renderer.lineWidth = 3
-            return renderer
-        }
-        fatalError()
-    }
+//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+//
+//        if overlay.isKind(of: MKPolygon.self) {
+//            let renderer = MKPolygonRenderer(overlay: overlay)
+//
+//            renderer.fillColor = UIColor.cyan.withAlphaComponent(0.2)
+//            renderer.strokeColor = UIColor.blue.withAlphaComponent(0.7)
+//            renderer.lineWidth = 3
+//            return renderer
+//        }
+//        fatalError()
+//    }
 }
 
 extension RideVC: CLLocationManagerDelegate {
