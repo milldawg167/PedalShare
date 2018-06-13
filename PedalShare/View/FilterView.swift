@@ -1,5 +1,5 @@
 //
-//  ShadowView.swift
+//  FilterView.swift
 //  PedalShare
 //
 //  Created by Andrew Miller on 05/05/2018.
@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ShadowView: UIView {
+class FilterView: UIView {
     override func awakeFromNib() {
+        self.layer.cornerRadius = 15.0
         self.layer.shadowOpacity = 0.75
-        self.layer.shadowRadius = 5
-        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowRadius = 2.0
+        self.layer.shadowColor = UIColor.gray.cgColor
         super.awakeFromNib()
     }
 }

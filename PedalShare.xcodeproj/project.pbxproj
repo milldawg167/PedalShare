@@ -20,6 +20,9 @@
 		F84AD742209DDF52009C4ECA /* PedalShareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD741209DDF52009C4ECA /* PedalShareUITests.swift */; };
 		F860852120A864380057F226 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F860852020A864380057F226 /* StoreKit.framework */; };
 		F8878A3720D0779400B5D1E9 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8878A3620D0779400B5D1E9 /* Journey.swift */; };
+		F8878A3B20D0AFC600B5D1E9 /* FilterBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8878A3A20D0AFC600B5D1E9 /* FilterBtn.swift */; };
+		F8878A3D20D0B0D200B5D1E9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8878A3C20D0B0D200B5D1E9 /* Constants.swift */; };
+		F8878A3F20D0BD6100B5D1E9 /* BikeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8878A3E20D0BD6100B5D1E9 /* BikeAnnotation.swift */; };
 		F8BEE851209F2C67001DAADC /* rick_grimes.gif in Resources */ = {isa = PBXBuildFile; fileRef = F8BEE850209F2C64001DAADC /* rick_grimes.gif */; };
 		F8D27405209E175E00B823BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8D27404209E175E00B823BB /* GoogleService-Info.plist */; };
 		F8D27407209E399500B823BB /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D27406209E399500B823BB /* ProfileVC.swift */; };
@@ -33,7 +36,7 @@
 		F8F486AA209DE87A00B69A27 /* Exported Fonts in Resources */ = {isa = PBXBuildFile; fileRef = F8F486A9209DE87A00B69A27 /* Exported Fonts */; };
 		F8F486AC209DF85200B69A27 /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F486AB209DF85200B69A27 /* AuthVC.swift */; };
 		F8F486AE209DF87400B69A27 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F486AD209DF87400B69A27 /* LoginVC.swift */; };
-		F8F486B0209DF90600B69A27 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F486AF209DF90600B69A27 /* ShadowView.swift */; };
+		F8F486B0209DF90600B69A27 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F486AF209DF90600B69A27 /* FilterView.swift */; };
 		F8F486B2209DF9B900B69A27 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F486B1209DF9B900B69A27 /* AuthService.swift */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +83,9 @@
 		F84AD743209DDF52009C4ECA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F860852020A864380057F226 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F8878A3620D0779400B5D1E9 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
+		F8878A3A20D0AFC600B5D1E9 /* FilterBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBtn.swift; sourceTree = "<group>"; };
+		F8878A3C20D0B0D200B5D1E9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F8878A3E20D0BD6100B5D1E9 /* BikeAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeAnnotation.swift; sourceTree = "<group>"; };
 		F8BEE850209F2C64001DAADC /* rick_grimes.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = rick_grimes.gif; sourceTree = "<group>"; };
 		F8D27404209E175E00B823BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F8D27406209E399500B823BB /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -94,7 +100,7 @@
 		F8F486A9209DE87A00B69A27 /* Exported Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Exported Fonts"; sourceTree = "<group>"; };
 		F8F486AB209DF85200B69A27 /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
 		F8F486AD209DF87400B69A27 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		F8F486AF209DF90600B69A27 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		F8F486AF209DF90600B69A27 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		F8F486B1209DF9B900B69A27 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,8 +184,8 @@
 		F84AD71E209DDF4D009C4ECA /* PedalShare */ = {
 			isa = PBXGroup;
 			children = (
-				F8878A3520D0777F00B5D1E9 /* Model */,
 				F8D27412209EF36200B823BB /* PedalShare.entitlements */,
+				F8878A3520D0777F00B5D1E9 /* Model */,
 				F8F486A4209DE29A00B69A27 /* Services */,
 				F8F486A3209DE25700B69A27 /* Resources */,
 				F8F486A2209DE25200B69A27 /* Extensions */,
@@ -218,6 +224,8 @@
 			isa = PBXGroup;
 			children = (
 				F8878A3620D0779400B5D1E9 /* Journey.swift */,
+				F8878A3C20D0B0D200B5D1E9 /* Constants.swift */,
+				F8878A3E20D0BD6100B5D1E9 /* BikeAnnotation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -226,7 +234,8 @@
 			isa = PBXGroup;
 			children = (
 				F8D2740C209E8F4C00B823BB /* DirectionsTableView.swift */,
-				F8F486AF209DF90600B69A27 /* ShadowView.swift */,
+				F8F486AF209DF90600B69A27 /* FilterView.swift */,
+				F8878A3A20D0AFC600B5D1E9 /* FilterBtn.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -511,9 +520,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8D2740D209E8F4C00B823BB /* DirectionsTableView.swift in Sources */,
+				F8878A3F20D0BD6100B5D1E9 /* BikeAnnotation.swift in Sources */,
+				F8878A3D20D0B0D200B5D1E9 /* Constants.swift in Sources */,
 				F8D27416209EF73700B823BB /* IAPHelper.swift in Sources */,
 				F8F486AC209DF85200B69A27 /* AuthVC.swift in Sources */,
 				F84AD724209DDF4D009C4ECA /* HistoryVC.swift in Sources */,
+				F8878A3B20D0AFC600B5D1E9 /* FilterBtn.swift in Sources */,
 				F8F486AE209DF87400B69A27 /* LoginVC.swift in Sources */,
 				F8D27407209E399500B823BB /* ProfileVC.swift in Sources */,
 				F84AD720209DDF4D009C4ECA /* AppDelegate.swift in Sources */,
@@ -523,7 +535,7 @@
 				F84AD722209DDF4D009C4ECA /* RideVC.swift in Sources */,
 				F8D27414209EF5C400B823BB /* PedalShareProducts.swift in Sources */,
 				F8F486A8209DE3A100B69A27 /* DataService.swift in Sources */,
-				F8F486B0209DF90600B69A27 /* ShadowView.swift in Sources */,
+				F8F486B0209DF90600B69A27 /* FilterView.swift in Sources */,
 				F8F486B2209DF9B900B69A27 /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

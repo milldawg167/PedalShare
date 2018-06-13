@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -47,5 +47,3 @@ class LoginVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 }
-
-extension LoginVC: UITextFieldDelegate {}

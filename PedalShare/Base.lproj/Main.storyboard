@@ -54,8 +54,8 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eWX-JF-4kb">
                                 <rect key="frame" x="0.0" y="70" width="375" height="548"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KT1-ZO-X4H">
-                                <rect key="frame" x="330" y="79" width="33" height="33"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KT1-ZO-X4H" userLabel="centerOnLocation">
+                                <rect key="frame" x="12" y="82" width="33" height="33"/>
                                 <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="8yQ-mJ-976"/>
@@ -66,15 +66,53 @@
                                     <action selector="centerMapBtnWasPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="bdb-7N-LOd"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vn3-yA-mZO" userLabel="Filter View" customClass="FilterView" customModule="PedalShare" customModuleProvider="target">
+                                <rect key="frame" x="47" y="564" width="281" height="30"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="2jO-06-6Mv">
+                                        <rect key="frame" x="16" y="0.0" width="248" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLx-Lz-OHn" userLabel="All" customClass="FilterBtn" customModule="PedalShare" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                                <state key="normal" title="All">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XzT-pf-tlO" userLabel="Road" customClass="FilterBtn" customModule="PedalShare" customModuleProvider="target">
+                                                <rect key="frame" x="88" y="0.0" width="72" height="30"/>
+                                                <state key="normal" title="Road">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRX-eW-UiP" userLabel="Mountain" customClass="FilterBtn" customModule="PedalShare" customModuleProvider="target">
+                                                <rect key="frame" x="176" y="0.0" width="72" height="30"/>
+                                                <state key="normal" title=" Mountain ">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dsD-JM-YXF"/>
+                                    <constraint firstAttribute="width" constant="281" id="ypz-yj-klE"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="KT1-ZO-X4H" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="12" id="0OI-az-sf6"/>
                             <constraint firstItem="eWX-JF-4kb" firstAttribute="bottom" secondItem="PQr-Ze-W5v" secondAttribute="bottom" id="1Ib-3A-WAx"/>
                             <constraint firstItem="eWX-JF-4kb" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="EIn-Bi-KdK"/>
                             <constraint firstItem="pDw-3L-w02" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="Hjd-kf-hTk"/>
                             <constraint firstItem="pDw-3L-w02" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="OLX-7a-LbP"/>
                             <constraint firstItem="eWX-JF-4kb" firstAttribute="trailing" secondItem="PQr-Ze-W5v" secondAttribute="trailing" id="Pwu-f4-c28"/>
                             <constraint firstAttribute="trailing" secondItem="pDw-3L-w02" secondAttribute="trailing" id="bOV-g9-JWA"/>
+                            <constraint firstItem="vn3-yA-mZO" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="gc0-8X-cDM"/>
+                            <constraint firstItem="KT1-ZO-X4H" firstAttribute="top" secondItem="pDw-3L-w02" secondAttribute="bottom" constant="12" id="oti-M9-faz"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="vn3-yA-mZO" secondAttribute="bottom" constant="24" id="rHD-z7-CHC"/>
                             <constraint firstItem="eWX-JF-4kb" firstAttribute="top" secondItem="pDw-3L-w02" secondAttribute="bottom" id="v2U-eR-JaU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
@@ -1345,7 +1383,7 @@ Cg
         <image name="directions_icon" width="15" height="15"/>
         <image name="emailIcon" width="25" height="16"/>
         <image name="green-bike" width="750" height="500"/>
-        <image name="history" width="15" height="15"/>
+        <image name="history" width="35" height="35"/>
         <image name="improved-doughnut" width="613" height="367"/>
         <image name="logout" width="92" height="65"/>
         <image name="me-tabIcon" width="25" height="25"/>
