@@ -45,6 +45,10 @@
 	<string>This app requires your location for offering directions to and from your required destination.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app requires your location for offering directions to and from your required destination.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

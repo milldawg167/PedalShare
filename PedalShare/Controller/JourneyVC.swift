@@ -13,7 +13,7 @@ class JourneyVC: UIViewController, MKMapViewDelegate {
     let regionRadius: Double = 1000
     
     var activityIndicator: UIActivityIndicatorView?
-    var locationArray = Array<CLLocationCoordinate2D>()
+    var journey: Journey!
     
     // MARK: - showRouteOnMap
     
@@ -21,8 +21,8 @@ class JourneyVC: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         mapView.delegate = self
         configureLocationServices()
-        print("\(locationArray)")
-        showRouteOnMap(pickupCoordinate: locationArray[0], destinationCoordinate: locationArray[1])
+        print("\(journey.end_coords)")
+        showRouteOnMap(pickupCoordinate: journey.start_coords, destinationCoordinate: journey.end_coords)
     }
     
     func showRouteOnMap(pickupCoordinate: CLLocationCoordinate2D, destinationCoordinate: CLLocationCoordinate2D) {

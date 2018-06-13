@@ -11,7 +11,7 @@ import Firebase
 import MapKit
 import CoreLocation
 
-class RideVC: UIViewController {
+class RideVC: UIViewController{
 
     @IBOutlet weak var fromField: UITextField!
     @IBOutlet weak var toField: UITextField!
@@ -23,7 +23,7 @@ class RideVC: UIViewController {
     let authorizationStatus = CLLocationManager.authorizationStatus()
     let regionRadius: Double = 1000
     
-    var locationsArray: Array<CLLocationCoordinate2D>!
+    var journey: Journey!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,11 @@ class RideVC: UIViewController {
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
         configureLocationServices()
-        locationsArray = []
+        journey = Journey()
+    }
+    
+    @IBAction func unwindToRideVC(segue: UIStoryboardSegue) {
+        print("Unwind to Root View Controller")
     }
     
     @IBAction func centerMapBtnWasPressed(_ sender: Any) {
@@ -40,28 +44,40 @@ class RideVC: UIViewController {
         }
     }
  
-    @IBAction func goBtnPressed(_ sender: Any) {
-        goBtn.isHidden = true
-        activityIndicator.startAnimating()
-        if fromField.text == "" {
-            let coordinate = locationManager.location?.coordinate
-            let lat_start = coordinate?.latitude
-            let long_start = coordinate?.longitude
-            let pair = CLLocationCoordinate2D(latitude: lat_start!, longitude: long_start!)
-            locationsArray.append(pair)
-            geocode(textField: toField)
-            goBtn.isHidden = false
-            activityIndicator.stopAnimating()
-            if !goBtn.isHidden {
-                performSegue(withIdentifier: "big_map", sender: self)
+    @IBAction func goBtnPressed(_ sender: UIButton) {
+//        goBtn.isHidden = true
+//        activityIndicator.startAnimating()
+//        if fromField.text == "" {
+        let start_coord = locationManager.location?.coordinate
+        let geocoder = CLGeocoder()
+        let address = self.fromField.text
+        if (address != nil) {print(address)}
+        self.journey.start_coords = start_coord
+        geocoder.geocodeAddressString("\(address)", completionHandler: {(placemarks, error) -> Void in
+            if (error != nil) {print("ADM: \(String(describing: error))")}
+            
+            if let placemark = placemarks?.first {
+                let end = placemark.location?.coordinate
+                print(end)
+                self.journey.end_coords = end
             } else {
-                print("error here!!!!")
+                print("\(String(describing: error))")
             }
-        } else {
-            let pair = CLLocationCoordinate2D(latitude: 51.24401, longitude: -0.58889)
-            locationsArray.append(pair)
-            // geocode(textField: toField)
-        }
+        })
+        print("\(journey.end_coords)")
+        
+        self.performSegue(withIdentifier: "big_map", sender: journey)
+//        goBtn.isHidden = false
+//        activityIndicator.stopAnimating()
+//        print("\(locationsArray)")
+//        if !goBtn.isHidden {
+//                performSegue(withIdentifier: "big_map", sender: self)
+//        } else {print("error here!!!!")}
+//        } else {
+//            let pair = CLLocationCoordinate2D(latitude: 51.24401, longitude: -0.58889)
+//            locationsArray.append(pair)
+//            // geocode(textField: toField)
+//        }
         // let pair2 = CLLocationCoordinate2D(latitude:  51.238255, longitude:  -0.604732)
         // locationsArray.append(pair2)
     }
@@ -76,39 +92,24 @@ class RideVC: UIViewController {
         print(alertString)
     }
     
-    func geocode(textField: UITextField) {
-        let geocoder = CLGeocoder()
-        let address = textField.text
-        geocoder.geocodeAddressString(address!, completionHandler: {(placemarks, error) -> Void in
-            if (error != nil) {
-                print("Error: \(String(describing: error))")
-            }
-
-            if let placemark = placemarks?.first {
-                let lat_end = placemark.location!.coordinate.latitude
-                let long_end = placemark.location!.coordinate.longitude
-                print("Lat: \(lat_end) -- Long: \(long_end)")
-                let pair2 = CLLocationCoordinate2D(latitude: lat_end, longitude: long_end)
-                self.locationsArray.append(pair2)
-                print("\(self.locationsArray)")
-                return
-            } else {
-                print("\(String(describing: error))")
-            }
-        })
-    }
+//    func geocode(textField: UITextField, coordinates: Array<CLLocationCoordinate2D>) -> Array<CLLocationCoordinate2D> {
+//
+//        return coord_array
+//    }
     
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if fromField.text != nil && toField.text != nil {
-            return true
-        } else {
-            showAlert("Please enter a valid starting point and destination.")
-            return false
-        }
-    }
+//    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+//        if toField.text != nil {
+//            return true
+//        } else {
+//            showAlert("Please enter a valid starting point and destination.")
+//            return false
+//        }
+//    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let journeyVC = segue.destination as? JourneyVC {
-            journeyVC.locationArray = locationsArray
+        if segue.identifier == "big_map" {
+            if let journeyVC = segue.destination as? JourneyVC {
+                journeyVC.journey = sender as? Journey
+            }
         }
     }
 }

@@ -19,6 +19,7 @@
 		F84AD737209DDF52009C4ECA /* PedalShareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD736209DDF52009C4ECA /* PedalShareTests.swift */; };
 		F84AD742209DDF52009C4ECA /* PedalShareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD741209DDF52009C4ECA /* PedalShareUITests.swift */; };
 		F860852120A864380057F226 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F860852020A864380057F226 /* StoreKit.framework */; };
+		F8878A3720D0779400B5D1E9 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8878A3620D0779400B5D1E9 /* Journey.swift */; };
 		F8BEE851209F2C67001DAADC /* rick_grimes.gif in Resources */ = {isa = PBXBuildFile; fileRef = F8BEE850209F2C64001DAADC /* rick_grimes.gif */; };
 		F8D27405209E175E00B823BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8D27404209E175E00B823BB /* GoogleService-Info.plist */; };
 		F8D27407209E399500B823BB /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D27406209E399500B823BB /* ProfileVC.swift */; };
@@ -78,6 +79,7 @@
 		F84AD741209DDF52009C4ECA /* PedalShareUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedalShareUITests.swift; sourceTree = "<group>"; };
 		F84AD743209DDF52009C4ECA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F860852020A864380057F226 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		F8878A3620D0779400B5D1E9 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		F8BEE850209F2C64001DAADC /* rick_grimes.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = rick_grimes.gif; sourceTree = "<group>"; };
 		F8D27404209E175E00B823BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F8D27406209E399500B823BB /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 		F84AD71E209DDF4D009C4ECA /* PedalShare */ = {
 			isa = PBXGroup;
 			children = (
+				F8878A3520D0777F00B5D1E9 /* Model */,
 				F8D27412209EF36200B823BB /* PedalShare.entitlements */,
 				F8F486A4209DE29A00B69A27 /* Services */,
 				F8F486A3209DE25700B69A27 /* Resources */,
@@ -209,6 +212,14 @@
 				F84AD743209DDF52009C4ECA /* Info.plist */,
 			);
 			path = PedalShareUITests;
+			sourceTree = "<group>";
+		};
+		F8878A3520D0777F00B5D1E9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F8878A3620D0779400B5D1E9 /* Journey.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		F8F486A0209DE24500B69A27 /* View */ = {
@@ -336,7 +347,13 @@
 							com.apple.ApplePay = {
 								enabled = 1;
 							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
 								enabled = 1;
 							};
 							com.apple.Maps.iOS = {
@@ -502,6 +519,7 @@
 				F84AD720209DDF4D009C4ECA /* AppDelegate.swift in Sources */,
 				F8D27418209F13A300B823BB /* PayVC.swift in Sources */,
 				F8D2740B209E851100B823BB /* JourneyVC.swift in Sources */,
+				F8878A3720D0779400B5D1E9 /* Journey.swift in Sources */,
 				F84AD722209DDF4D009C4ECA /* RideVC.swift in Sources */,
 				F8D27414209EF5C400B823BB /* PedalShareProducts.swift in Sources */,
 				F8F486A8209DE3A100B69A27 /* DataService.swift in Sources */,
@@ -695,6 +713,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewmiller167.PedalShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -717,6 +736,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewmiller167.PedalShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
