@@ -15,7 +15,7 @@ class DirectionsTableView: UITableView {
     
     var directionsArray: [(startingAddress: String, endingAddress: String, route: MKRoute)]!
     
-    override init(frame: CGRect, style: UITableViewStyle) {
+    override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
     }
     

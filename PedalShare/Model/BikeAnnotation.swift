@@ -14,13 +14,14 @@ class BikeAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var bikeID: String
     var bikeType: String
+    var bikeDetails: String
     var title: String?
-
-    var bik = Bike()
     
-    init(currentLocation: CLLocationCoordinate2D, bikeID: String, bikeType: String) {
-        self.bike.coordinate = currentLocation
-        self.bike.id = bikeID
-        self.bike.type = bikeType
-        self.title = bikeType}
+    init(bike: Bike) {
+        self.coordinate = bike.currentLocation
+        self.bikeID = bike.id
+        self.bikeType = bike.type
+        self.bikeDetails = bike.details
+        self.title = bike.type
+    }
 }

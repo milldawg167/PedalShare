@@ -9,37 +9,25 @@
 import UIKit
 import CoreLocation
 
-enum BikeType: String {
-    case Road = "Road"
-    case Mountain = "Mountain"
-    case Hybrid = "Hybrid"
-}
-
 struct Bike {
     private var _id: String
-    private var _type: BikeType
+    private var _type: String
     private var _owner: String
     private var _details: String
     private var _currentLocation: CLLocationCoordinate2D
     
     var id: String {return _id}
-    var type: BikeType {return _type}
+    var type: String {return _type}
     var owner: String {return _owner}
     var details: String {return _details}
     var currentLocation: CLLocationCoordinate2D {return _currentLocation}
     
-    init(bikeID: String, bikeType: Int, bikeOwner: String,
+    init(bikeID: String, bikeType: String, bikeOwner: String,
          bikeDetails: String, bikeLocation: CLLocationCoordinate2D) {
         _id = bikeID
+        _type = bikeType
         _owner = bikeOwner
         _details = bikeDetails
         _currentLocation = bikeLocation
-        
-        switch bikeType {
-        case 2:
-            self._type = BikeType.Mountain
-        default:
-            self._type = BikeType.Road
-        }
     }
 }

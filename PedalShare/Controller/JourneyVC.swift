@@ -26,7 +26,7 @@ class JourneyVC: UIViewController, MKMapViewDelegate {
         mapView.delegate = self
         configureLocationServices()
         thejourney = passedJourney
-        showRouteOnMap(pickupCoordinate: thejourney.start_coords!, destinationCoordinate: thejourney.end_coords!)
+        showRouteOnMap(pickupCoordinate: thejourney.start!, destinationCoordinate: thejourney.end!)
     }
     
     func showRouteOnMap(pickupCoordinate: CLLocationCoordinate2D, destinationCoordinate: CLLocationCoordinate2D) {
@@ -51,7 +51,7 @@ class JourneyVC: UIViewController, MKMapViewDelegate {
         
         self.mapView.showAnnotations([sourceAnnotation,destinationAnnotation], animated: true )
         
-        let directionRequest = MKDirectionsRequest()
+        let directionRequest = MKDirections.Request()
         directionRequest.source = sourceMapItem
         directionRequest.destination = destinationMapItem
         directionRequest.transportType = .automobile
@@ -70,9 +70,9 @@ class JourneyVC: UIViewController, MKMapViewDelegate {
             
             let route = response.routes[0]
             
-            self.mapView.add((route.polyline), level: MKOverlayLevel.aboveRoads)
+            self.mapView.addOverlay((route.polyline), level: MKOverlayLevel.aboveRoads)
             
-            var rect = MKCoordinateRegionForMapRect(route.polyline.boundingMapRect)
+            var rect = MKCoordinateRegion.init(route.polyline.boundingMapRect)
             rect.span.latitudeDelta *= 1.5
             rect.span.longitudeDelta *= 1.5
             self.mapView.setRegion(rect, animated: true)
@@ -81,7 +81,7 @@ class JourneyVC: UIViewController, MKMapViewDelegate {
     
     func centerMapOnUserLocation() {
         guard let coordinate = locationManager.location?.coordinate else {return}
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, regionRadius*2.0, regionRadius*2.0)
+        let coordinateRegion = MKCoordinateRegion.init(center: coordinate, latitudinalMeters: regionRadius*2.0, longitudinalMeters: regionRadius*2.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
