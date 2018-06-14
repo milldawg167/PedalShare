@@ -22,7 +22,11 @@ class ProfileVC: UIViewController, UIPopoverControllerDelegate {
     }
     
     @IBAction func signOutBtnPressed(_ sender: Any) {
-        let logoutPopup = UIAlertController(title: "Sign Out?", message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
+        let logoutPopup = UIAlertController(title: nil, message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
+        logoutPopup.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: {
+            (alertAction: UIAlertAction!) in
+            logoutPopup.dismiss(animated: true, completion: nil)
+        }))
         let logoutAction = UIAlertAction(title: "Sign out", style: .destructive) { (buttonTapped) in
             do {
                 try Auth.auth().signOut()

@@ -6,7 +6,7 @@
 //  Copyright © 2018 Andrew Miller. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import MapKit
 
 class BikeAnnotation: NSObject, MKAnnotation {

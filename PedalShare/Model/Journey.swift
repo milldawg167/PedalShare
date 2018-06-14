@@ -12,23 +12,23 @@ import CoreLocation
 struct Journey {
     private var _start: CLLocationCoordinate2D?
     private var _end: CLLocationCoordinate2D?
-    private var _user: String?
-    private var _owner: String?
+    private var _rider: Rider?
+    private var _owner: Owner?
     private var _id: String?
     private var _bike: Bike?
     
     var start: CLLocationCoordinate2D? {return _start}
     var end: CLLocationCoordinate2D? {return _end}
-    var user: String? {return _user}
-    var owner: String? {return _owner}
+    var rider: Rider? {return _rider}
+    var owner: Owner? {return _owner}
     var id: String? {return _id}
     var bike: Bike? {return _bike}
     
     init(start_coords: CLLocationCoordinate2D, end_coords: CLLocationCoordinate2D,
-         bikeUser: String, bikeOwner: String, bike: Bike) {
+         bikeRider: Rider, bikeOwner: Owner, bike: Bike) {
         _start = start_coords
         _end = end_coords
-        _user = bikeUser
+        _rider = bikeRider
         _owner = bikeOwner
         _bike = bike
     }

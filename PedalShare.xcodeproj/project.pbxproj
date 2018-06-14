@@ -21,6 +21,7 @@
 		F860852120A864380057F226 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F860852020A864380057F226 /* StoreKit.framework */; };
 		F87CB84320D2F82C00A2CA00 /* Rider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87CB84220D2F82C00A2CA00 /* Rider.swift */; };
 		F87CB84520D2F84200A2CA00 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87CB84420D2F84200A2CA00 /* Owner.swift */; };
+		F87CB84720D2FBAE00A2CA00 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87CB84620D2FBAE00A2CA00 /* User.swift */; };
 		F8878A3720D0779400B5D1E9 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8878A3620D0779400B5D1E9 /* Journey.swift */; };
 		F8878A3B20D0AFC600B5D1E9 /* FilterBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8878A3A20D0AFC600B5D1E9 /* FilterBtn.swift */; };
 		F8878A3D20D0B0D200B5D1E9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8878A3C20D0B0D200B5D1E9 /* Constants.swift */; };
@@ -87,6 +88,7 @@
 		F860852020A864380057F226 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F87CB84220D2F82C00A2CA00 /* Rider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rider.swift; sourceTree = "<group>"; };
 		F87CB84420D2F84200A2CA00 /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Owner.swift; path = /Users/andrewmiller/Desktop/Other_Stuff/Other_Coding/Hackathon/PedalShare/PedalShare/Model/Owner.swift; sourceTree = "<absolute>"; };
+		F87CB84620D2FBAE00A2CA00 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F8878A3620D0779400B5D1E9 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		F8878A3A20D0AFC600B5D1E9 /* FilterBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBtn.swift; sourceTree = "<group>"; };
 		F8878A3C20D0B0D200B5D1E9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				F8878A3620D0779400B5D1E9 /* Journey.swift */,
 				F8878A3C20D0B0D200B5D1E9 /* Constants.swift */,
 				F8878A3E20D0BD6100B5D1E9 /* BikeAnnotation.swift */,
+				F87CB84620D2FBAE00A2CA00 /* User.swift */,
 				F87CB84220D2F82C00A2CA00 /* Rider.swift */,
 				F87CB84420D2F84200A2CA00 /* Owner.swift */,
 			);
@@ -541,6 +544,7 @@
 				F8878A3B20D0AFC600B5D1E9 /* FilterBtn.swift in Sources */,
 				F8F486AE209DF87400B69A27 /* LoginVC.swift in Sources */,
 				F8D27407209E399500B823BB /* ProfileVC.swift in Sources */,
+				F87CB84720D2FBAE00A2CA00 /* User.swift in Sources */,
 				F84AD720209DDF4D009C4ECA /* AppDelegate.swift in Sources */,
 				F8D27418209F13A300B823BB /* PayVC.swift in Sources */,
 				F87CB84320D2F82C00A2CA00 /* Rider.swift in Sources */,

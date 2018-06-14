@@ -53,6 +53,31 @@ class RideVC: UIViewController{
         }
     }
     
+    @IBAction func allBtnPressed(_ sender: Any) {
+        for annotation in mapView.annotations {
+            mapView.view(for: annotation)?.isHidden = false
+        }
+    }
+    
+    @IBAction func roadBtnPressed(_ sender: Any) {
+        for annotation in mapView.annotations {
+            if !annotation.isKind(of: MKUserLocation.self) && !(annotation.title == "Road") {
+                mapView.view(for: annotation)?.isHidden = true
+            } else {
+                mapView.view(for: annotation)?.isHidden = false
+            }
+        }
+    }
+    
+    @IBAction func mountainBtnPressed(_ sender: Any) {
+        for annotation in mapView.annotations {
+            if !annotation.isKind(of: MKUserLocation.self) && !(annotation.title == "Mountain") {
+                mapView.view(for: annotation)?.isHidden = true
+            } else {
+                mapView.view(for: annotation)?.isHidden = false
+            }
+        }
+    }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let annoIdentifier = "Bike"
@@ -88,7 +113,7 @@ class RideVC: UIViewController{
             mapView.deselectAnnotation(anno, animated: false)
             let start = (locationManager.location?.coordinate)!
             let end = anno.coordinate
-            let journey = Journey(start_coords: start, end_coords: end, bikeUser: user, bikeOwner: owner, bike: bike1)
+            let journey = Journey(start_coords: start, end_coords: end, bikeRider: rider1, bikeOwner: owner1, bike: bike1)
             guard let journeyVC = storyboard?.instantiateViewController(withIdentifier: "JourneyVC") as? JourneyVC else { return }
             journeyVC.initData(forJourney: journey)
             present(journeyVC, animated: true, completion: nil)

@@ -12,17 +12,17 @@ import CoreLocation
 struct Bike {
     private var _id: String
     private var _type: String
-    private var _owner: String
+    private var _owner: Owner
     private var _details: String
     private var _currentLocation: CLLocationCoordinate2D
     
     var id: String {return _id}
     var type: String {return _type}
-    var owner: String {return _owner}
+    var owner: Owner {return _owner}
     var details: String {return _details}
     var currentLocation: CLLocationCoordinate2D {return _currentLocation}
     
-    init(bikeID: String, bikeType: String, bikeOwner: String,
+    init(bikeID: String, bikeType: String, bikeOwner: Owner,
          bikeDetails: String, bikeLocation: CLLocationCoordinate2D) {
         _id = bikeID
         _type = bikeType

@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/andrewmiller/Desktop/Other_Stuff/Other_Coding/Hackathon/PedalShare/PedalShare/Model/Owner.swift">
-   </FileRef>
-   <FileRef
       location = "group:PedalShare.xcodeproj">
    </FileRef>
    <FileRef
