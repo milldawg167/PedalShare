@@ -14,10 +14,14 @@ import CoreLocation
 class RideVC: UIViewController{
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var pullUpViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pullUpView: UIView!
     
     let locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()
     let regionRadius: Double = 2000
+    
+    var screenSize = UIScreen.main.bounds
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -33,6 +37,7 @@ class RideVC: UIViewController{
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
         
+        animateViewDown()
         configureLocationServices()
         //addDoubleTap()
         
@@ -79,20 +84,45 @@ class RideVC: UIViewController{
         }
     }
     
+    func addSwipe() {
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(animateViewDown))
+        swipe.direction = .down
+        pullUpView.addGestureRecognizer(swipe)
+    }
+    
+    func animateViewUp() {
+        pullUpViewHeightConstraint.constant = 100
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc func animateViewDown() {
+        centerMapOnUserLocation()
+        pullUpViewHeightConstraint.constant = 0
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func addSearchBar() {
+        let searchBar = UISearchBar()
+        searchBar.frame = CGRect(x: 10, y: 10, width: (screenSize.width - 10), height: 40)
+        pullUpView.addSubview(searchBar)
+    }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let annoIdentifier = "Bike"
         var annotationView: MKAnnotationView?
-        if annotation.isKind(of: MKUserLocation.self) {
-//            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "User")
-//            annotationView?.image = UIImage(named: "directions_icon")
-        } else if let deqAnno = mapView.dequeueReusableAnnotationView(withIdentifier: annoIdentifier) {
-            annotationView = deqAnno
-            annotationView?.annotation = annotation
-        } else {
+        if !annotation.isKind(of: MKUserLocation.self) {
             let av = MKAnnotationView(annotation: annotation, reuseIdentifier: annoIdentifier)
             av.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             annotationView = av
+        } else if let deqAnno = mapView.dequeueReusableAnnotationView(withIdentifier: annoIdentifier) {
+            annotationView = deqAnno
+            annotationView?.annotation = annotation
         }
+        
         if let annotationView = annotationView, let anno = annotation as? BikeAnnotation {
             annotationView.canShowCallout = true
             annotationView.image = UIImage(named: "\(anno.bikeType)")
@@ -114,35 +144,14 @@ class RideVC: UIViewController{
             let start = (locationManager.location?.coordinate)!
             let end = anno.coordinate
             let journey = Journey(start_coords: start, end_coords: end, bikeRider: rider1, bikeOwner: owner1, bike: bike1)
-            guard let journeyVC = storyboard?.instantiateViewController(withIdentifier: "JourneyVC") as? JourneyVC else { return }
-            journeyVC.initData(forJourney: journey)
-            present(journeyVC, animated: true, completion: nil)
+//            guard let journeyVC = storyboard?.instantiateViewController(withIdentifier: "JourneyVC") as? JourneyVC else { return }
+//            journeyVC.initData(forJourney: journey)
+//            present(journeyVC, animated: true, completion: nil)
+            centerMapOnAnnotation(annotation: anno)
+            animateViewUp()
+            addSwipe()
+            addSearchBar()
         }
-    }
-    
-//    func mapView(mapView: MKMapView, didSelectAnnotationView view:MKAnnotationView) {
-//        let tapGesture = UITapGestureRecognizer(target:self,  action:#selector(calloutTapped(sender:)))
-//        view.addGestureRecognizer(tapGesture)
-//    }
-//
-//    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
-//        view.removeGestureRecognizer(view.gestureRecognizers!.first!)
-//    }
-//
-//    @objc func calloutTapped(sender:UITapGestureRecognizer) {
-//        let view = sender.view as! MKAnnotationView
-//        if let annotation = view.annotation as? MKPointAnnotation {
-//            performSegue(withIdentifier: "annotationDetailSegue", sender: annotation)
-//        }
-//    }
-    
-    func showAlert(_ alertString: String) {
-        let alert = UIAlertController(title: nil, message: alertString, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .default) { (alert) -> Void in
-        }
-        alert.addAction(okButton)
-        present(alert, animated: true, completion: nil)
-        print(alertString)
     }
 }
 
@@ -151,6 +160,13 @@ extension RideVC: MKMapViewDelegate {
         guard let coordinate = locationManager.location?.coordinate else {return}
         let coordinateRegion = MKCoordinateRegion.init(center: coordinate, latitudinalMeters: regionRadius*2.0, longitudinalMeters: regionRadius*2.0)
         mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    func centerMapOnAnnotation(annotation: MKAnnotation) {
+        guard let anno = annotation as? BikeAnnotation else {return}
+        let coordinateRegion = MKCoordinateRegion.init(center: anno.coordinate, latitudinalMeters: regionRadius*2.0, longitudinalMeters: regionRadius*2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+        
     }
 }
 

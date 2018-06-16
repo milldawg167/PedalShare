@@ -6,7 +6,6 @@ class JourneyVC: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var totalTimeLabel: UILabel!
-    @IBOutlet weak var directionsTableView: DirectionsTableView!
     
     let locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()

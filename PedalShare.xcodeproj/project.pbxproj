@@ -31,7 +31,6 @@
 		F8D27405209E175E00B823BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8D27404209E175E00B823BB /* GoogleService-Info.plist */; };
 		F8D27407209E399500B823BB /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D27406209E399500B823BB /* ProfileVC.swift */; };
 		F8D2740B209E851100B823BB /* JourneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D2740A209E851100B823BB /* JourneyVC.swift */; };
-		F8D2740D209E8F4C00B823BB /* DirectionsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D2740C209E8F4C00B823BB /* DirectionsTableView.swift */; };
 		F8D2740F209EBB3300B823BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8D2740E209EBB3300B823BB /* MapKit.framework */; };
 		F8D27414209EF5C400B823BB /* PedalShareProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D27413209EF5C400B823BB /* PedalShareProducts.swift */; };
 		F8D27416209EF73700B823BB /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D27415209EF73700B823BB /* IAPHelper.swift */; };
@@ -98,7 +97,6 @@
 		F8D27404209E175E00B823BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F8D27406209E399500B823BB /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		F8D2740A209E851100B823BB /* JourneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyVC.swift; sourceTree = "<group>"; };
-		F8D2740C209E8F4C00B823BB /* DirectionsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsTableView.swift; sourceTree = "<group>"; };
 		F8D2740E209EBB3300B823BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F8D27412209EF36200B823BB /* PedalShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PedalShare.entitlements; sourceTree = "<group>"; };
 		F8D27413209EF5C400B823BB /* PedalShareProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedalShareProducts.swift; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 		F8F486A0209DE24500B69A27 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F8D2740C209E8F4C00B823BB /* DirectionsTableView.swift */,
 				F8F486AF209DF90600B69A27 /* FilterView.swift */,
 				F8878A3A20D0AFC600B5D1E9 /* FilterBtn.swift */,
 			);
@@ -534,7 +531,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8D2740D209E8F4C00B823BB /* DirectionsTableView.swift in Sources */,
 				F8878A3F20D0BD6100B5D1E9 /* BikeAnnotation.swift in Sources */,
 				F8878A3D20D0B0D200B5D1E9 /* Constants.swift in Sources */,
 				F8B4D99820D125700000CDD8 /* Bike.swift in Sources */,
