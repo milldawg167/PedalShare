@@ -91,7 +91,7 @@ class RideVC: UIViewController{
     }
     
     func animateViewUp() {
-        pullUpViewHeightConstraint.constant = 100
+        pullUpViewHeightConstraint.constant = 60
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
@@ -107,7 +107,7 @@ class RideVC: UIViewController{
     
     func addSearchBar() {
         let searchBar = UISearchBar()
-        searchBar.frame = CGRect(x: 10, y: 10, width: (screenSize.width - 10), height: 40)
+        searchBar.frame = CGRect(x: 10, y: 10, width: (screenSize.width - 20), height: 40)
         pullUpView.addSubview(searchBar)
     }
     
@@ -147,6 +147,9 @@ class RideVC: UIViewController{
 //            guard let journeyVC = storyboard?.instantiateViewController(withIdentifier: "JourneyVC") as? JourneyVC else { return }
 //            journeyVC.initData(forJourney: journey)
 //            present(journeyVC, animated: true, completion: nil)
+            for annotation in mapView.annotations {
+                mapView.view(for: annotation)?.isHidden = false
+            }
             centerMapOnAnnotation(annotation: anno)
             animateViewUp()
             addSwipe()
