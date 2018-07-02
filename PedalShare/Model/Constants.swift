@@ -20,3 +20,5 @@ let bike3 = Bike(bikeID: "ABCD1236", bikeType: "Mountain", bikeOwner: owner1, bi
 let bike4 = Bike(bikeID: "ABCD1237", bikeType: "Mountain", bikeOwner: owner1, bikeDetails: "Specialised LightGray", bikeLocation: CLLocationCoordinate2D(latitude: 51.2730, longitude: -0.3954))
 
 let bikeArray = [bike1,bike2,bike3,bike4]
+
+let currentCoordinate = CLLocationCoordinate2D(latitude: 51.231546, longitude: -0.06721)

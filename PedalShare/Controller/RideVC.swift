@@ -240,8 +240,8 @@ extension RideVC: UISearchBarDelegate {
         searchBar.endEditing(true)
         let localSearchRequest = MKLocalSearch.Request()
         localSearchRequest.naturalLanguageQuery = searchBar.text
-//        let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
-//        localSearchRequest.region = region
+        let region = MKCoordinateRegion(center: currentCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+        localSearchRequest.region = region
         let localSearch = MKLocalSearch(request: localSearchRequest)
         localSearch.start { (response, _) in
             guard let response = response else { return }
