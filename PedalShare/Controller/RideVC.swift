@@ -16,13 +16,14 @@ class RideVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var pullUpViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pullUpView: UIView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     
     let locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()
     let regionRadius: Double = 2000
     
     var screenSize = UIScreen.main.bounds
-    var searchBar = UISearchBar()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -116,13 +117,14 @@ class RideVC: UIViewController {
     }
     
     func animateViewUp() {
-        pullUpViewHeightConstraint.constant = 60
+        pullUpViewHeightConstraint.constant = 250
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
     }
     
     @objc func animateViewDown() {
+        searchBar.isHidden = true
         centerMapOnUserLocation()
         pullUpViewHeightConstraint.constant = 0
         UIView.animate(withDuration: 0.3) {
@@ -137,12 +139,6 @@ class RideVC: UIViewController {
     }
     @objc func dismissKeyboard() {
         view.endEditing(true)
-    }
-    
-    func addSearchBar() {
-        searchBar.frame = CGRect(x: 10, y: 10, width: (screenSize.width - 20), height: 40)
-        searchBar.tintColor = .gray
-        pullUpView.addSubview(searchBar)
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -172,26 +168,26 @@ class RideVC: UIViewController {
         return annotationView
     }
     
-    func getDirections(from source: CLLocationCoordinate2D, to destination: MKMapItem) {
-        let sourceMapItem = MKMapItem(placemark: MKPlacemark(coordinate: source))
-        
-        let directionsRequest = MKDirections.Request()
-        directionsRequest.source = sourceMapItem
-        directionsRequest.destination = destination
-        directionsRequest.transportType = .automobile
-        
-        print("Made it here")
-        
-        let directions = MKDirections(request: directionsRequest)
-        directions.calculate { (response, _) in
-            guard let response = response else { return }
-            guard let primaryRoute = response.routes.first else { return }
-            
+//    func getDirections(from source: CLLocationCoordinate2D, to destination: MKMapItem) {
+//        let sourceMapItem = MKMapItem(placemark: MKPlacemark(coordinate: source))
+//
+//        let directionsRequest = MKDirections.Request()
+//        directionsRequest.source = sourceMapItem
+//        directionsRequest.destination = destination
+//        directionsRequest.transportType = .automobile
+//
+//        print("Made it here")
+//
+//        let directions = MKDirections(request: directionsRequest)
+//        directions.calculate { (response, _) in
+//            guard let response = response else { return }
+//            guard let primaryRoute = response.routes.first else { return }
+//
 //            self.mapView.addOverlay(primaryRoute.polyline)
-            self.mapView.addOverlay((primaryRoute.polyline), level: MKOverlayLevel.aboveRoads)
-            
-            self.locationManager.monitoredRegions.forEach({ self.locationManager.stopMonitoring(for: $0) })
-            
+//            self.mapView.addOverlay((primaryRoute.polyline), level: MKOverlayLevel.aboveRoads)
+//
+//            self.locationManager.monitoredRegions.forEach({ self.locationManager.stopMonitoring(for: $0) })
+//
 //            self.steps = primaryRoute.steps
 //            for i in 0 ..< primaryRoute.steps.count {
 //                let step = primaryRoute.steps[i]
@@ -210,8 +206,8 @@ class RideVC: UIViewController {
 //            let speechUtterance = AVSpeechUtterance(string: initialMessage)
 //            self.speechSynthesizer.speak(speechUtterance)
 //            self.stepCounter += 1
-        }
-    }
+//        }
+//    }
     
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -227,9 +223,9 @@ class RideVC: UIViewController {
                 mapView.view(for: annotation)?.isHidden = false
             }
             centerMapOnAnnotation(annotation: anno)
+            searchBar.isHidden = false
             animateViewUp()
             addSwipeDown()
-            addSearchBar()
             hideKeyboardWhenTappedAround()
         }
     }
@@ -246,7 +242,7 @@ extension RideVC: UISearchBarDelegate {
         localSearch.start { (response, _) in
             guard let response = response else { return }
             guard let firstMapItem = response.mapItems.first else { return }
-            self.getDirections(from: CLLocationCoordinate2D(latitude: 51.5335, longitude: -0.346729), to: firstMapItem)
+//            self.getDirections(from: CLLocationCoordinate2D(latitude: 51.5335, longitude: -0.346729), to: firstMapItem)
         }
     }
 }
