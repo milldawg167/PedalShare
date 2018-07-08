@@ -16,14 +16,16 @@ class RideVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var pullUpViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pullUpView: UIView!
+    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
-    
     
     let locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()
     let regionRadius: Double = 2000
     
     var screenSize = UIScreen.main.bounds
+    var annoCoordinate = CLLocationCoordinate2D()
+    var resultSearchController: UISearchController!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -31,31 +33,42 @@ class RideVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(RideVC.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(RideVC.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        self.searchBar.delegate = self
         
         mapView.delegate = self
         mapView.showsCompass = true
         mapView.showsPointsOfInterest = true
         
         locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         
         animateViewDown()
         configureLocationServices()
-        //addDoubleTap()
+        
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController.searchResultsUpdater = locationSearchTable
+        let searchBar = resultSearchController!.searchBar
+        searchBar.delegate = self
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for places"
+        navigationItem.titleView = resultSearchController?.searchBar
+        resultSearchController.hidesNavigationBarDuringPresentation = false
+        resultSearchController.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+        locationSearchTable.mapView = mapView
         
         let bikes = bikeArray
         for bike in bikes {
             let anno = BikeAnnotation(bike: bike)
             self.mapView.addAnnotation(anno)
         }
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self)
+//        NotificationCenter.default.removeObserver(self)
     }
     
     @IBAction func unwindToRideVC(segue: UIStoryboardSegue) {
@@ -94,26 +107,27 @@ class RideVC: UIViewController {
         }
     }
 
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-            }
-        }
-    }
+//    @objc func keyboardWillShow(notification: NSNotification) {
+//        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.view.frame.origin.y == 0{
+//                self.view.frame.origin.y -= keyboardSize.height
+//            }
+//        }
+//    }
+//
+//    @objc func keyboardWillHide(notification: NSNotification) {
+//        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.view.frame.origin.y != 0{
+//                self.view.frame.origin.y += keyboardSize.height
+//            }
+//        }
+//    }
 
     func addSwipeDown() {
         let swipe = UISwipeGestureRecognizer(target: self, action: #selector(animateViewDown))
         swipe.direction = .down
         pullUpView.addGestureRecognizer(swipe)
+        titleLbl.isHidden = false
     }
     
     func animateViewUp() {
@@ -121,10 +135,10 @@ class RideVC: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
+        
     }
     
     @objc func animateViewDown() {
-        searchBar.isHidden = true
         centerMapOnUserLocation()
         pullUpViewHeightConstraint.constant = 0
         UIView.animate(withDuration: 0.3) {
@@ -168,62 +182,15 @@ class RideVC: UIViewController {
         return annotationView
     }
     
-//    func getDirections(from source: CLLocationCoordinate2D, to destination: MKMapItem) {
-//        let sourceMapItem = MKMapItem(placemark: MKPlacemark(coordinate: source))
-//
-//        let directionsRequest = MKDirections.Request()
-//        directionsRequest.source = sourceMapItem
-//        directionsRequest.destination = destination
-//        directionsRequest.transportType = .automobile
-//
-//        print("Made it here")
-//
-//        let directions = MKDirections(request: directionsRequest)
-//        directions.calculate { (response, _) in
-//            guard let response = response else { return }
-//            guard let primaryRoute = response.routes.first else { return }
-//
-//            self.mapView.addOverlay(primaryRoute.polyline)
-//            self.mapView.addOverlay((primaryRoute.polyline), level: MKOverlayLevel.aboveRoads)
-//
-//            self.locationManager.monitoredRegions.forEach({ self.locationManager.stopMonitoring(for: $0) })
-//
-//            self.steps = primaryRoute.steps
-//            for i in 0 ..< primaryRoute.steps.count {
-//                let step = primaryRoute.steps[i]
-//                print(step.instructions)
-//                print(step.distance)
-//                let region = CLCircularRegion(center: step.polyline.coordinate,
-//                                              radius: 20,
-//                                              identifier: "\(i)")
-//                self.locationManager.startMonitoring(for: region)
-//                let circle = MKCircle(center: region.center, radius: region.radius)
-//                self.mapView.addOverlay(circle)
-//            }
-//
-//            let initialMessage = "In \(self.steps[0].distance) meters, \(self.steps[0].instructions) then in \(self.steps[1].distance) meters, \(self.steps[1].instructions)."
-//            self.directionsLabel.text = initialMessage
-//            let speechUtterance = AVSpeechUtterance(string: initialMessage)
-//            self.speechSynthesizer.speak(speechUtterance)
-//            self.stepCounter += 1
-//        }
-//    }
-    
-    
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let anno = view.annotation as? BikeAnnotation {
+            annoCoordinate = anno.coordinate
             mapView.deselectAnnotation(anno, animated: false)
-            let start = (locationManager.location?.coordinate)!
-            let end = anno.coordinate
-            let journey = Journey(start_coords: start, end_coords: end, bikeRider: rider1, bikeOwner: owner1, bike: bike1)
-//            guard let journeyVC = storyboard?.instantiateViewController(withIdentifier: "JourneyVC") as? JourneyVC else { return }
-//            journeyVC.initData(forJourney: journey)
-//            present(journeyVC, animated: true, completion: nil)
             for annotation in mapView.annotations {
                 mapView.view(for: annotation)?.isHidden = false
             }
             centerMapOnAnnotation(annotation: anno)
-            searchBar.isHidden = false
+            titleLbl.isHidden = true
             animateViewUp()
             addSwipeDown()
             hideKeyboardWhenTappedAround()
@@ -236,13 +203,18 @@ extension RideVC: UISearchBarDelegate {
         searchBar.endEditing(true)
         let localSearchRequest = MKLocalSearch.Request()
         localSearchRequest.naturalLanguageQuery = searchBar.text
-        let region = MKCoordinateRegion(center: currentCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+        let region = MKCoordinateRegion(center: annoCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         localSearchRequest.region = region
         let localSearch = MKLocalSearch(request: localSearchRequest)
         localSearch.start { (response, _) in
             guard let response = response else { return }
             guard let firstMapItem = response.mapItems.first else { return }
-//            self.getDirections(from: CLLocationCoordinate2D(latitude: 51.5335, longitude: -0.346729), to: firstMapItem)
+            let end = firstMapItem.placemark.coordinate
+            let start = self.annoCoordinate
+            let journey = Journey(start_coords: start, end_coords: end, bikeRider: rider1, bikeOwner: owner1, bike: bike1)
+            guard let journeyVC = self.storyboard?.instantiateViewController(withIdentifier: "JourneyVC") as? JourneyVC else { return }
+            journeyVC.initData(forJourney: journey)
+            self.present(journeyVC, animated: true, completion: nil)
         }
     }
 }
@@ -277,6 +249,4 @@ extension RideVC: CLLocationManagerDelegate {
         print(error)
     }
 }
-
-
 

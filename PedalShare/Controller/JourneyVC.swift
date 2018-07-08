@@ -86,7 +86,7 @@ class JourneyVC: UIViewController, MKMapViewDelegate {
     
     func addActivityIndicator() {
         let activityIndicator = UIActivityIndicatorView(frame: UIScreen.main.bounds)
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.style = .whiteLarge
         activityIndicator.backgroundColor = view.backgroundColor
         activityIndicator.startAnimating()
         view.addSubview(activityIndicator)
@@ -124,7 +124,46 @@ extension JourneyVC: CLLocationManagerDelegate {
 }
 
 
-
+//    func getDirections(from source: CLLocationCoordinate2D, to destination: MKMapItem) {
+//        let sourceMapItem = MKMapItem(placemark: MKPlacemark(coordinate: source))
+//
+//        let directionsRequest = MKDirections.Request()
+//        directionsRequest.source = sourceMapItem
+//        directionsRequest.destination = destination
+//        directionsRequest.transportType = .automobile
+//
+//        print("Made it here")
+//
+//        let directions = MKDirections(request: directionsRequest)
+//        directions.calculate { (response, _) in
+//            guard let response = response else { return }
+//            guard let primaryRoute = response.routes.first else { return }
+//
+//            self.mapView.addOverlay(primaryRoute.polyline)
+//            self.mapView.addOverlay((primaryRoute.polyline), level: MKOverlayLevel.aboveRoads)
+//
+//            self.locationManager.monitoredRegions.forEach({ self.locationManager.stopMonitoring(for: $0) })
+//
+//            self.steps = primaryRoute.steps
+//            for i in 0 ..< primaryRoute.steps.count {
+//                let step = primaryRoute.steps[i]
+//                print(step.instructions)
+//                print(step.distance)
+//                let region = CLCircularRegion(center: step.polyline.coordinate,
+//                                              radius: 20,
+//                                              identifier: "\(i)")
+//                self.locationManager.startMonitoring(for: region)
+//                let circle = MKCircle(center: region.center, radius: region.radius)
+//                self.mapView.addOverlay(circle)
+//            }
+//
+//            let initialMessage = "In \(self.steps[0].distance) meters, \(self.steps[0].instructions) then in \(self.steps[1].distance) meters, \(self.steps[1].instructions)."
+//            self.directionsLabel.text = initialMessage
+//            let speechUtterance = AVSpeechUtterance(string: initialMessage)
+//            self.speechSynthesizer.speak(speechUtterance)
+//            self.stepCounter += 1
+//        }
+//    }
 
 
 

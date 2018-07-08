@@ -26,6 +26,7 @@
 		F8878A3B20D0AFC600B5D1E9 /* FilterBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8878A3A20D0AFC600B5D1E9 /* FilterBtn.swift */; };
 		F8878A3D20D0B0D200B5D1E9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8878A3C20D0B0D200B5D1E9 /* Constants.swift */; };
 		F8878A3F20D0BD6100B5D1E9 /* BikeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8878A3E20D0BD6100B5D1E9 /* BikeAnnotation.swift */; };
+		F88C228320F018540072ED21 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88C228220F018540072ED21 /* LocationSearchTable.swift */; };
 		F8B4D99820D125700000CDD8 /* Bike.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4D99720D125700000CDD8 /* Bike.swift */; };
 		F8BEE851209F2C67001DAADC /* rick_grimes.gif in Resources */ = {isa = PBXBuildFile; fileRef = F8BEE850209F2C64001DAADC /* rick_grimes.gif */; };
 		F8D27405209E175E00B823BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8D27404209E175E00B823BB /* GoogleService-Info.plist */; };
@@ -92,6 +93,7 @@
 		F8878A3A20D0AFC600B5D1E9 /* FilterBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBtn.swift; sourceTree = "<group>"; };
 		F8878A3C20D0B0D200B5D1E9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F8878A3E20D0BD6100B5D1E9 /* BikeAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeAnnotation.swift; sourceTree = "<group>"; };
+		F88C228220F018540072ED21 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		F8B4D99720D125700000CDD8 /* Bike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bike.swift; sourceTree = "<group>"; };
 		F8BEE850209F2C64001DAADC /* rick_grimes.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = rick_grimes.gif; sourceTree = "<group>"; };
 		F8D27404209E175E00B823BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			children = (
 				F8F486AF209DF90600B69A27 /* FilterView.swift */,
 				F8878A3A20D0AFC600B5D1E9 /* FilterBtn.swift */,
+				F88C228220F018540072ED21 /* LocationSearchTable.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				F8878A3720D0779400B5D1E9 /* Journey.swift in Sources */,
 				F84AD722209DDF4D009C4ECA /* RideVC.swift in Sources */,
 				F87CB84520D2F84200A2CA00 /* Owner.swift in Sources */,
+				F88C228320F018540072ED21 /* LocationSearchTable.swift in Sources */,
 				F8D27414209EF5C400B823BB /* PedalShareProducts.swift in Sources */,
 				F8F486A8209DE3A100B69A27 /* DataService.swift in Sources */,
 				F8F486B0209DF90600B69A27 /* FilterView.swift in Sources */,
